@@ -1,0 +1,24 @@
+{
+    "name": "knightar/phptail",
+    "description": "PHPTail",
+    "keywords": ["PHPTail"],
+    "authors": [
+        {
+            "name": "Toshio Takiguchi",
+            "email": "taktos@gmail.com"
+        },
+        {
+            "name": "Brandon Lis",
+            "email": "knightar@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "smarty/smarty": "3.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phptail\\": "src/"
+        }
+    }
+}

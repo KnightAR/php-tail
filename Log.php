@@ -1,14 +1,15 @@
 <?php
 /**
- * Require the library
+ * Require composer
  */
-require 'PHPTail.php';
+require_once 'vendor/autoload.php';
+
 /**
  * Initilize a new instance of PHPTail
  * @var PHPTail
  */
 
-$tail = new PHPTail(array(
+$tail = new Phptail\PHPTail(array(
     "Access_Log" => "/var/log/httpd/access_log",
     "Error_Log" => "/var/log/httpd/error_log",
 ));
