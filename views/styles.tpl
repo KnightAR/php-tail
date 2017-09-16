@@ -26,4 +26,15 @@
     white-space: -o-pre-wrap;   /* Opera 7 */    
     word-wrap: break-word;      /* IE */
 }
+.open>.dropdown-menu {
+    max-height: 113px;
+    overflow-y: scroll;
+}
+a.jumpto,a.jumpto:hover,a.jumpto:visited,a.jumpto:active,a.jumpto:focus {
+    color: #000000;
+    text-decoration: none;
+}
+a.highlight {
+    background: yellow;
+}
 </style>

@@ -13,10 +13,16 @@
     scrollPosition = 0;
     //Should we scroll to the bottom?
     scroll = true;
+    
     lastFile = window.location.hash != "" ? window.location.hash.substr(1) : "";
+    
+    var hash = lastFile;
+    var split = hash.split(":");
+    if (split.length > 1) {
+        lastFile = split[0];
+    }
     console.log(lastFile);
     $(document).ready(function() {
-
         // Setup the settings dialog
         $("#settings").dialog({
             modal : true,
@@ -95,6 +101,15 @@ console.log(e);
                 scroll = false;
             }
         });
+        $('#results').on('click', '.jumpto', function(e) {
+            $('.highlight').removeClass('highlight');
+            e.preventDefault();
+            var target = $(e.target);
+            var el = $("a[name='"+ target.attr('name') +"']");
+            $("html, body").animate({scrollTop: el.offset().top - 55}, "fast");
+            window.location.hash = '#' + target.attr('name');
+            el.addClass('highlight');
+        });
         scrollToBottom();
 
     });
@@ -108,10 +123,17 @@ console.log(e);
             lastSize = data.size;
             $("#current").text(data.file);
             $.each(data.data, function(key, value) {
-                $("#results").append('' + value + '<br/>');
+                $("#results").append(key + ' : <a href="#'+ lastFile + ':' + key + '" name="'+ lastFile + ':' + key + '" class="jumpto">' + value + '</a><br/>');
             });
             if (scroll) {
-                scrollToBottom();
+                if (split.length > 1) {
+                    var el = $("a[name='"+ hash +"']");
+                    $("html, body").animate({scrollTop: el.offset().top - 55}, "fast");
+                    el.addClass('highlight');
+                    split = [];
+                } else {
+                    scrollToBottom();
+                }
             }
         });
     }
