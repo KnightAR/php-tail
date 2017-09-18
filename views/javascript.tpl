@@ -105,9 +105,10 @@ console.log(e);
             $('.highlight').removeClass('highlight');
             e.preventDefault();
             var target = $(e.target);
-            var el = $("a[name='"+ target.attr('name') +"']");
+            var parent = target.parent();
+            var el = $("span[name='"+ parent.attr('name') +"']");
             $("html, body").animate({scrollTop: el.offset().top - 55}, "fast");
-            window.location.hash = '#' + target.attr('name');
+            window.location.hash = '#' + parent.attr('name');
             el.addClass('highlight');
         });
         scrollToBottom();
@@ -121,13 +122,14 @@ console.log(e);
     function updateLog() {
         $.getJSON('?ajax=1&file=' + lastFile + '&lastsize=' + lastSize + '&grep=' + grep + '&invert=' + invert, function(data) {
             lastSize = data.size;
+            lastFile = data.filename;
             $("#current").text(data.file);
             $.each(data.data, function(key, value) {
-                $("#results").append(key + ' : <a href="#'+ lastFile + ':' + key + '" name="'+ lastFile + ':' + key + '" class="jumpto">' + value + '</a><br/>');
+                $("#results").append('<span name="'+ lastFile + ':' + key + '"><a href="#'+ lastFile + ':' + key + '" class="jumpto">' + key + ' : </a>' + value + '</span><br/>');
             });
             if (scroll) {
                 if (split.length > 1) {
-                    var el = $("a[name='"+ hash +"']");
+                    var el = $("span[name='"+ hash +"']");
                     $("html, body").animate({scrollTop: el.offset().top - 55}, "fast");
                     el.addClass('highlight');
                     split = [];

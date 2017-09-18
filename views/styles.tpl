@@ -34,7 +34,7 @@ a.jumpto,a.jumpto:hover,a.jumpto:visited,a.jumpto:active,a.jumpto:focus {
     color: #000000;
     text-decoration: none;
 }
-a.highlight {
+.highlight {
     background: yellow;
 }
 </style>

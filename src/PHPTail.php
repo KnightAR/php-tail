@@ -92,7 +92,7 @@ class PHPTail {
         if(end($data) == "") {
             array_pop($data);
         }
-        return json_encode(array("size" => $fsize, "file" => $this->log[$file], "data" => $data));
+        return json_encode(array("size" => $fsize, "file" => $this->log[$file], "filename" => $file, "data" => $data));
     }
     /**
      * This function will print out the required HTML/CSS/JS template
